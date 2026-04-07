@@ -1,10 +1,10 @@
-# 小欧翻译 v2 - 简洁桌面翻译工具
+# 程序翻译器 - 简洁桌面翻译工具
 
 基于 MyMemory 免费翻译 API，**无需申请任何 key**，直接下载 exe 双击就能用！
 
 ## 💾 下载地址
 
-👉 **[小欧翻译 v1.0.0 Releases](https://github.com/akkkkkkdc/translator/releases/latest)**
+👉 **[程序翻译器 Releases](https://github.com/akkkkkkdc/translator/releases/latest)**
 
 下载对应平台的 exe 即可直接运行（Windows/macOS/Linux 都有）：
 
