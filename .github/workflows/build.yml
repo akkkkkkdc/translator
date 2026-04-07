@@ -1,0 +1,46 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: xiaoou_translator.exe
+          - os: macos-latest
+            artifact: xiaoou_translator_mac
+          - os: ubuntu-latest
+            artifact: xiaoou_translator_linux
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install PyQt6 pyinstaller
+
+      - name: Build executable
+        run: |
+          pyinstaller --onefile --windowed --name="${{ matrix.artifact }}" main.py
+        shell: bash
+
+      - name: Upload asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/${{ matrix.artifact }}*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
