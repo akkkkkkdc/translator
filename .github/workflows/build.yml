@@ -25,14 +25,11 @@ jobs:
         run: pip install PyQt6 pyinstaller
 
       - name: Build executable
-        run: python -m PyInstaller --onefile --windowed --icon=icon.ico main.py
-
-      - name: Rename to Chinese
-        run: python -c "import os, glob, shutil; [shutil.move(f, 'dist/程序翻译器.exe') for f in glob.glob('dist/*.exe')]"
+        run: python -m PyInstaller --onefile --windowed --icon=icon.ico --name="translator" main.py
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/程序翻译器.exe
+          files: dist/translator.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
