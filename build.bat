@@ -23,7 +23,7 @@ if errorlevel 1 (
 )
 
 echo [3/3] 打包 exe...
-pyinstaller --onefile --windowed --name="xiaoou_translator" main.py
+pyinstaller --onefile --windowed --icon=icon.ico --name="xiaoou_translator" main.py
 
 echo.
 echo =====================================
