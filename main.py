@@ -211,8 +211,7 @@ class TranslateWindow(QWidget):
         self.dev_info_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self.dev_info_btn.enterEvent = lambda e: QToolTip.showText(
             self.dev_info_btn.mapToGlobal(QPoint(0, 20)),
-            "默认开启，勾选后中文翻译为英文时自动转为驼峰命名\n"
-            "例如：校验发送喂食任务 → checkSendFeedTask")
+            "勾选后，中文翻译为英文时自动转为驼峰命名")
         self.dev_info_btn.leaveEvent = lambda e: QToolTip.hideText()
 
         dev_layout.addWidget(self.dev_checkbox)
