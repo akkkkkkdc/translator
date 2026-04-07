@@ -116,8 +116,7 @@ class TranslateWindow(QWidget):
         self.to_lang = "en"
         self.thread = None
         # 加载设置
-        self.settings = load_settings()
-        self.dev_mode = self.settings.get("developer_mode", False)
+        self.dev_mode = True  # 默认开启开发者模式
         self.init_ui()
 
     def init_ui(self):
@@ -202,7 +201,7 @@ class TranslateWindow(QWidget):
         self.dev_checkbox = QCheckBox("☕ Java开发者")
         self.dev_checkbox.setFont(QFont("微软雅黑", 10))
         self.dev_checkbox.setStyleSheet(self._dev_checkbox_style())
-        self.dev_checkbox.setChecked(self.dev_mode)
+        self.dev_checkbox.setChecked(True)  # 默认勾选
         self.dev_checkbox.stateChanged.connect(self.on_dev_mode_changed)
 
         self.dev_info_btn = QPushButton("?")
@@ -212,9 +211,8 @@ class TranslateWindow(QWidget):
         self.dev_info_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self.dev_info_btn.enterEvent = lambda e: QToolTip.showText(
             self.dev_info_btn.mapToGlobal(QPoint(0, 20)),
-            "勾选后，中文翻译为英文时会自动转为驼峰命名\n"
-            "例如：校验发送喂食任务 → checkSendFeedTask\n"
-            "勾选状态会自动保存")
+            "默认开启，勾选后中文翻译为英文时自动转为驼峰命名\n"
+            "例如：校验发送喂食任务 → checkSendFeedTask")
         self.dev_info_btn.leaveEvent = lambda e: QToolTip.hideText()
 
         dev_layout.addWidget(self.dev_checkbox)
@@ -292,8 +290,6 @@ class TranslateWindow(QWidget):
     # ---------- 开发者模式切换 ----------
     def on_dev_mode_changed(self, state):
         self.dev_mode = (state == Qt.CheckState.Checked.value)
-        self.settings["developer_mode"] = self.dev_mode
-        save_settings(self.settings)
         self._update_dev_indicator()
 
     def _update_dev_indicator(self):
