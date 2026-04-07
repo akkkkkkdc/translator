@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 echo =====================================
-echo   小欧翻译 - Windows 一键打包工具
+echo   程序翻译器 - Windows 打包工具
 echo =====================================
 echo.
 
@@ -26,10 +26,15 @@ echo [3/3] 打包 exe...
 pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="translator" main.py
 
 echo.
+echo 重命名为中文名...
+:: 用 PowerShell 重命名，支持中文名
+powershell -Command "Rename-Item -Path 'dist\translator.exe' -NewName '程序翻译器.exe' -Force"
+
+echo.
 echo =====================================
-if exist "dist\xiaoou_translator.exe" (
+if exist "dist\程序翻译器.exe" (
     echo 打包成功！exe 文件在：
-    echo   dist\xiaoou_translator.exe
+    echo   dist\程序翻译器.exe
 ) else (
     echo 打包失败，请检查错误信息
 )
