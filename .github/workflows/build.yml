@@ -28,9 +28,14 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="translator" main.py
 
+      - name: Rename to Chinese
+        run: |
+          Rename-Item -Path "dist\translator.exe" -NewName "程序翻译器.exe"
+          Get-ChildItem dist/
+
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/translator.exe
+          files: dist/程序翻译器.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
