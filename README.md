@@ -8,7 +8,7 @@
 
 下载 exe 双击即可直接运行：
 
-- 🪟 **Windows**: `程序翻译器.exe`
+- 🪟 **Windows**: `translator.exe`
 
 
 > 无需安装 Python 或任何依赖，exe 是独立可执行文件。
