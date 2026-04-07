@@ -18,6 +18,8 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QSize, QPoint
 from PyQt6.QtGui import QIcon
+import sys
+import os
 from PyQt6.QtGui import QFont, QColor, QPalette
 
 
@@ -119,10 +121,15 @@ class TranslateWindow(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowTitle("小欧翻译")
+        self.setWindowTitle("程序翻译器")
         self.setFixedSize(580, 580)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.setWindowIcon(QIcon("icon.ico"))
+        # 任务栏图标：exe 模式下从 sys._MEIPASS 加载，开发模式下从当前目录加载
+        if getattr(sys, 'frozen', False):
+            icon_path = os.path.join(sys._MEIPASS, 'icon.ico')
+        else:
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icon.ico')
+        self.setWindowIcon(QIcon(icon_path))
         self.move_to_center()
 
         # 整体布局
