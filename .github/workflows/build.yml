@@ -25,25 +25,15 @@ jobs:
         run: pip install PyQt6 pyinstaller
 
       - name: Build executable
-        run: python -m PyInstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="tmpbuild" main.py
+        run: |
+          if exist dist rmdir /s /q dist
+          mkdir dist
+          python -m PyInstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." main.py
+          echo === dist contents before rename ===
+          dir dist
 
       - name: Rename to Chinese
-        run: |
-          python -c "
-          import os, glob, shutil
-          dist = 'dist'
-          files = glob.glob(os.path.join(dist, '*.exe'))
-          print('Found exe files:', files)
-          if not files:
-              raise Exception('No exe found in dist/')
-          src = files[0]
-          dst = os.path.join(dist, '程序翻译器.exe')
-          if os.path.exists(dst):
-              os.remove(dst)
-          shutil.move(src, dst)
-          print('Renamed to:', dst)
-          print('Final contents of dist/:', os.listdir(dist))
-          "
+        run: python -c "import os, glob, shutil, sys; files=glob.glob('dist/*.exe'); print('Found:', files); [shutil.move(f, 'dist/程序翻译器.exe') for f in files]; print('Final:', os.listdir('dist'))"
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
