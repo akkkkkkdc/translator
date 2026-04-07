@@ -198,7 +198,7 @@ class TranslateWindow(QWidget):
         dev_layout = QHBoxLayout()
         dev_layout.setSpacing(6)
 
-        self.dev_checkbox = QCheckBox("☕ Java开发者")
+        self.dev_checkbox = QCheckBox("☕ 开发者")
         self.dev_checkbox.setFont(QFont("微软雅黑", 10))
         self.dev_checkbox.setStyleSheet(self._dev_checkbox_style())
         self.dev_checkbox.setChecked(True)  # 默认勾选
