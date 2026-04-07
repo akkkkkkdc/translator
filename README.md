@@ -6,11 +6,10 @@
 
 👉 **[程序翻译器 Releases](https://github.com/akkkkkkdc/translator/releases/latest)**
 
-下载对应平台的 exe 即可直接运行（Windows/macOS/Linux 都有）：
+下载 exe 双击即可直接运行：
 
-- 🪟 **Windows**: `xiaoou_translator.exe`
-- 🍎 **macOS**: `xiaoou_translator_mac`
-- 🐧 **Linux**: `xiaoou_translator_linux`
+- 🪟 **Windows**: `translator.exe`
+
 
 > 无需安装 Python 或任何依赖，exe 是独立可执行文件。
 
@@ -62,7 +61,7 @@ python main.py
 git tag v1.1.0
 git push origin v1.1.0
 ```
-推送 tag 后，GitHub Actions 会自动构建三个平台的 exe，并生成 Release。
+推送 tag 后，GitHub Actions 会自动构建 Windows exe，并生成 Release。
 
 ---
 
