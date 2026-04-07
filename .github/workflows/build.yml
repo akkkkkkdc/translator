@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -30,15 +33,12 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: |
-          pip install PyQt6 pyinstaller
+        run: pip install PyQt6 pyinstaller
 
       - name: Build executable
-        run: |
-          pyinstaller --onefile --windowed --name="${{ matrix.artifact }}" main.py
-        shell: bash
+        run: pyinstaller --onefile --windowed --name="${{ matrix.artifact }}" main.py
 
-      - name: Upload asset
+      - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
           files: dist/${{ matrix.artifact }}*
