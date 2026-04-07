@@ -26,11 +26,11 @@ jobs:
 
       - name: Build executable
         run: |
-          pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="xiaoou_translator" main.py
+          pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="程序翻译器" main.py
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/xiaoou_translator.exe
+          files: dist/程序翻译器.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
