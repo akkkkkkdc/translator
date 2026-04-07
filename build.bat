@@ -23,7 +23,7 @@ if errorlevel 1 (
 )
 
 echo [3/3] 打包 exe...
-pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="程序翻译器" main.py
+pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --name="translator" main.py
 
 echo.
 echo =====================================
