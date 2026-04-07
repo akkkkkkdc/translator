@@ -17,6 +17,7 @@ from PyQt6.QtWidgets import (
     QToolTip, QGraphicsDropShadowEffect
 )
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QSize, QPoint
+from PyQt6.QtGui import QIcon
 from PyQt6.QtGui import QFont, QColor, QPalette
 
 
@@ -121,6 +122,7 @@ class TranslateWindow(QWidget):
         self.setWindowTitle("小欧翻译")
         self.setFixedSize(580, 580)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setWindowIcon(QIcon("icon.ico"))
         self.move_to_center()
 
         # 整体布局
